@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Statistical Inference Project Assignment 1 - Question 2</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
+
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+</head>
+
+<body>
+<h1>Statistical Inference Project Assignment 1 - Question 2</h1>
+
+<p>We&#39;re going to analyze the ToothGrowth data in the R datasets package. </p>
+
+<p>The response is the length of odontoblasts (teeth) in each of 10 guinea pigs at each of three dose levels of Vitamin C (0.5, 1, and 2 mg) with each of two delivery methods (orange juice <strong>(OJ)</strong> or ascorbic acid <strong>(VC)</strong>). 
+For more information: <a href="http://stat.ethz.ch/R-manual/R-devel/library/datasets/html/ToothGrowth.html">http://stat.ethz.ch/R-manual/R-devel/library/datasets/html/ToothGrowth.html</a>  </p>
+
+<h2>1.Load the ToothGrowth data and perform some basic exploratory data analyses</h2>
+
+<pre><code class="r">data(ToothGrowth) #load data ToothGrowth
+head(ToothGrowth) 
+</code></pre>
+
+<pre><code>##    len supp dose
+## 1  4.2   VC  0.5
+## 2 11.5   VC  0.5
+## 3  7.3   VC  0.5
+## 4  5.8   VC  0.5
+## 5  6.4   VC  0.5
+## 6 10.0   VC  0.5
+</code></pre>
+
+<pre><code class="r">library(ggplot2)
+ggplot(ToothGrowth, aes(x=dose,y =len, color = supp))+
+    ylab(&quot;Lenght of Teeth&quot;)+
+    xlab(&quot;Dose (mg)&quot;)+
+    geom_point(alpha = 0.5, size = 10)+
+    ggtitle(&quot;Tooth Growth on Guinea Pigs&quot;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-1"/> </p>
+
+<p>From the graph, at dose = 0.5 and 1.0, It looks like OJ has more impact on the length of the tooth growth than VC. However, it&#39;s hard to tell when dose = 2.0.</p>
+
+<h2>2.Provide a basic summary of the data.</h2>
+
+<pre><code class="r">summary(ToothGrowth)
+</code></pre>
+
+<pre><code>##       len       supp         dose     
+##  Min.   : 4.2   OJ:30   Min.   :0.50  
+##  1st Qu.:13.1   VC:30   1st Qu.:0.50  
+##  Median :19.2           Median :1.00  
+##  Mean   :18.8           Mean   :1.17  
+##  3rd Qu.:25.3           3rd Qu.:2.00  
+##  Max.   :33.9           Max.   :2.00
+</code></pre>
+
+<p>Let&#39;s take a look at <strong>means</strong> for different supplements and doses.</p>
+
+<pre><code class="r">library(plyr)
+m_TG &lt;- ddply(ToothGrowth, .(supp,dose), function(df) mean(df[,1])) #group mean
+print(m_TG)
+</code></pre>
+
+<pre><code>##   supp dose    V1
+## 1   OJ  0.5 13.23
+## 2   OJ  1.0 22.70
+## 3   OJ  2.0 26.06
+## 4   VC  0.5  7.98
+## 5   VC  1.0 16.77
+## 6   VC  2.0 26.14
+</code></pre>
+
+<p>This shows that the mean of the length of the tooth growth for OJ at dose 0.5 and 0.1 are higher than those for VC. At dose = 2.0, both means are not much different. Also, for each supplement, as the dose levels increase, the lenghts of the tooth also increase.</p>
+
+<p>Now we look at the <strong>standard deviations</strong> for different supplements and doses.</p>
+
+<pre><code class="r">SD_TG &lt;- ddply(ToothGrowth, .(supp,dose), function(df) sd(df[,1])) #group variance
+print(SD_TG)
+</code></pre>
+
+<pre><code>##   supp dose    V1
+## 1   OJ  0.5 4.460
+## 2   OJ  1.0 3.911
+## 3   OJ  2.0 2.655
+## 4   VC  0.5 2.747
+## 5   VC  1.0 2.515
+## 6   VC  2.0 4.798
+</code></pre>
+
+<p>From the SD table, comparing SD from OJ, the SDs of the tooth growth decrease as while dose levels increase. However, when we compare SD from VC, the SDs of the tooth growth increase as the dose leves increase.</p>
+
+<h2>3.Use confidence intervals and hypothesis tests to compare tooth growth by supp and dose. (Use the techniques from class even if there&#39;s other approaches worth considering)</h2>
+
+<p>Since the each test was performed on a group of 10 guinea pigs, we will perform non-paired t test and assume unequal variance as we are not sure if the quinea pigs are from the same population.</p>
+
+<p>We want to compare the means of the tooth growth from OJ and VC for each dose level.
+Let \( \mu_{oj} \) is the mean of the tooth growth from OJ and \( \mu_{vs} \) is the mean of the tooth growth from VC.  </p>
+
+<h3>Hypothesis 1: Test on equality between OJ and VC for each dosage</h3>
+
+<p>\( H_0: \mu_{oj} - \mu_{vc} \)   = 0<br/>
+\( H_a: \mu_{oj} - \mu_{vc} \)   \( \neq \) 0  </p>
+
+<ul>
+<li>Compare at dose 0.5, </li>
+</ul>
+
+<pre><code class="r">TG05 &lt;- subset(ToothGrowth, dose == 0.5)
+t.test(len ~ supp, paired = FALSE, var.equal = FALSE, data = TG05)
+</code></pre>
+
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  len by supp
+## t = 3.17, df = 14.97, p-value = 0.006359
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  1.719 8.781
+## sample estimates:
+## mean in group OJ mean in group VC 
+##            13.23             7.98
+</code></pre>
+
+<p>It shows that at dose = 0.5, p-value is very small (less than 0.05) then the null hypothesis is rejected. This means the mean of the tooth growth from orange Juice is different from ascorbic acid.</p>
+
+<ul>
+<li>Compare at dose 0.1, </li>
+</ul>
+
+<pre><code class="r">TG1 &lt;- subset(ToothGrowth, dose == 1)
+t.test(len ~ supp, paired = FALSE, var.equal = FALSE, data = TG1)
+</code></pre>
+
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  len by supp
+## t = 4.033, df = 15.36, p-value = 0.001038
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  2.802 9.058
+## sample estimates:
+## mean in group OJ mean in group VC 
+##            22.70            16.77
+</code></pre>
+
+<p>It shows that at dose = 1.0, p-value is very small (less than 0.05) then the null hypothesis is rejected. This means the mean of the tooth growth from orange Juice is different from ascorbic acid.</p>
+
+<pre><code class="r">TG2 &lt;- subset(ToothGrowth, dose == 2)
+t.test(len ~ supp, paired = FALSE, var.equal = FALSE, data = TG2)
+</code></pre>
+
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  len by supp
+## t = -0.0461, df = 14.04, p-value = 0.9639
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -3.798  3.638
+## sample estimates:
+## mean in group OJ mean in group VC 
+##            26.06            26.14
+</code></pre>
+
+<p>For this case p-value is greater than 0.05 then we can accept the null hypothesis that there is no different on the mean of tooth growth from both supplement at dose = 2.0</p>
+
+<h3>Hypothesis 2: Test if OJ has more impact on VC for each dosage</h3>
+
+<p>\( H_0: \mu_{oj} - \mu_{vc} \)   \( \leq \) 0<br/>
+\( H_a: \mu_{oj} - \mu_{vc} \)   &gt; 0  </p>
+
+<ul>
+<li>Compare at dose 0.5, </li>
+</ul>
+
+<pre><code class="r">t.test(len ~ supp, alternative = &quot;greater&quot;, paired = FALSE, var.equal = FALSE, data = TG05)
+</code></pre>
+
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  len by supp
+## t = 3.17, df = 14.97, p-value = 0.003179
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  2.346   Inf
+## sample estimates:
+## mean in group OJ mean in group VC 
+##            13.23             7.98
+</code></pre>
+
+<p>It shows that at dose = 0.5, p-value is very small (less than 0.05) then the null hypothesis is rejected. This means orange Juice has more impact on tooth growth than ascorbic acid.  </p>
+
+<ul>
+<li>Compare at dose 1.0, </li>
+</ul>
+
+<pre><code class="r">t.test(len ~ supp, alternative = &quot;greater&quot;, paired = FALSE, var.equal = FALSE, data = TG1)
+</code></pre>
+
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  len by supp
+## t = 4.033, df = 15.36, p-value = 0.0005192
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  3.356   Inf
+## sample estimates:
+## mean in group OJ mean in group VC 
+##            22.70            16.77
+</code></pre>
+
+<p>It shows that at dose = 1.0, p-value is again very small (less than 0.05) then the null hypothesis is rejected.  </p>
+
+<ul>
+<li>Compare at dose 2.0, </li>
+</ul>
+
+<pre><code class="r">t.test(len ~ supp, alternative = &quot;greater&quot;, paired = FALSE, var.equal = FALSE, data = TG2)
+</code></pre>
+
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  len by supp
+## t = -0.0461, df = 14.04, p-value = 0.5181
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  -3.133    Inf
+## sample estimates:
+## mean in group OJ mean in group VC 
+##            26.06            26.14
+</code></pre>
+
+<p>For this case p-value is greater than 0.05 then we cannot reject the null hypothesis.So we cannot tell that OJ has more impact than VC  </p>
+
+<h2>4.State your conclusions and the assumptions needed for your conclusions.</h2>
+
+<p>We can conclude that orange Juice has more impact on that tooth growth than ascorbic acid when dose is less or equal to 1.0, however when dose = 2.0, there is no different on the toothgrowth from both orange juice and ascorbic acid.</p>
+
+</body>
+
+</html>
+
